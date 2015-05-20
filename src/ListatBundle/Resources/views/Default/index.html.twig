@@ -1,0 +1,7 @@
+<h1>My projects list</h1>
+
+<ul>
+    {% for pj in project %}
+    <li><a href='{{ path('listat_tasklist', {'name': pj}) }}'>{{ pj }}</a></li>
+    {% endfor %}
+</ul>
