@@ -1,7 +1,27 @@
 <h1>My projects list</h1>
 
+{{ form_start(form) }}
+<div>
+    {{ form_label(form.name) }}
+    {{ form_errors(form.name) }}
+    {{ form_widget(form.name) }}
+</div>
+<div>
+    {{ form_label(form.startDate) }}
+    {{ form_errors(form.startDate) }}
+    {{ form_widget(form.startDate) }}
+</div>
+<div>
+    {{ form_widget(form.reset) }}
+    {{ form_widget(form.save) }}
+</div>
+{{ form_end(form) }}
+
 <ul>
-    {% for pj in project %}
-    <li><a href='{{ path('listat_tasklist', {'name': pj}) }}'>{{ pj }}</a></li>
+    {% for pj in projects %}
+        <li>
+            <a href='{{ path('listat_tasklist', {'id': pj.getId()}) }}'>
+                {{ pj.getName() }}</a> - {{ pj.getStartDate|date('d/m/Y') }}
+        </li>
     {% endfor %}
 </ul>
