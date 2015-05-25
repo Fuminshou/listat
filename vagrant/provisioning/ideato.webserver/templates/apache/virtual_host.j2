@@ -1,10 +1,10 @@
 <VirtualHost *:80>
     ServerName {{ server_name_virtual_host }}
-    DocumentRoot "{{ application_root_dir }}"
+    DocumentRoot "{{ application_root_dir }}/web"
 
     CustomLog /var/log/apache2/virtual_host-access.log combined
     ErrorLog /var/log/apache2/virtual_host-error.log
-    <Directory "{{ application_root_dir }}">
+    <Directory "{{ application_root_dir }}/web">
         AllowOverride All
         Order allow,deny
         Allow from All
