@@ -3,6 +3,5 @@ listat_homepage:
     defaults: { _controller: ListatBundle:Default:index }
 
 listat_tasklist:
-    path:   /project/{name}
+    path:   /project/{id}
     defaults: { _controller: ListatBundle:Default:tasklist }
-
