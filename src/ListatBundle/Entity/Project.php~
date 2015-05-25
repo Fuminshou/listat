@@ -1,0 +1,31 @@
+<?php
+
+namespace ListatBundle\Entity;
+
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="project")
+ */
+class Project
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $project;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $startDate;
+
+}

@@ -3,8 +3,13 @@
 namespace ListatBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
 
-class Task
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="project")
+ */
+class Project
 {
     /**
      * @ORM\Column(type="integer")
@@ -26,7 +31,7 @@ class Task
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -37,7 +42,7 @@ class Task
      * Set name
      *
      * @param string $name
-     * @return Task
+     * @return Project
      */
     public function setName($name)
     {
@@ -49,7 +54,7 @@ class Task
     /**
      * Get name
      *
-     * @return string
+     * @return string 
      */
     public function getName()
     {
@@ -60,7 +65,7 @@ class Task
      * Set startDate
      *
      * @param \DateTime $startDate
-     * @return Task
+     * @return Project
      */
     public function setStartDate($startDate)
     {
@@ -72,7 +77,7 @@ class Task
     /**
      * Get startDate
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getStartDate()
     {
