@@ -1,7 +1,7 @@
 listat_homepage:
     path:     /
-    defaults: { _controller: ListatBundle:Default:index }
+    defaults: { _controller: ListatBundle:Project:index }
 
 listat_tasklist:
     path:   /project/{id}
-    defaults: { _controller: ListatBundle:Default:tasklist }
+    defaults: { _controller: ListatBundle:Task:tasklist }
