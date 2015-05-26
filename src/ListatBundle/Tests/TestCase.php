@@ -26,6 +26,7 @@ class TestCase extends WebTestCase
 
         $connection->executeUpdate($platform->getTruncateTableSQL('task', true));
         $connection->executeUpdate('DELETE FROM project WHERE id >= 1');
+        $connection->executeUpdate('ALTER TABLE project AUTO_INCREMENT = 1');
 
         $projects = array();
         for($i=1; $i<=3; $i++) {

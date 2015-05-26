@@ -9,14 +9,11 @@ class TaskControllerTest extends TestCase
     public function testTasklist()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $link = $crawler->filter('a:contains("Project 1")')->link();
-        $crawler = $client->click($link);
+        $crawler = $client->request('GET', '/project/1');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
         $this->assertEquals(1, $crawler->filter('h1')->count());
-/*        $this->assertEquals(3, $crawler->filter('ul > li')->count());*/
+        $this->assertEquals(3, $crawler->filter('ul > li')->count());
         $this->assertEquals(1, $crawler->filter('form')->count());
         $this->assertEquals(1, $crawler->filter('input[type=text]')->count());
         $this->assertEquals(3, $crawler->filter('select')->count());
