@@ -1,22 +1,25 @@
-<h1>Project: {{ name }}</h1>
+<h1>{{ project.getName() }}</h1>
 
 {{ form_start(form) }}
 <div>
-    {{ form_label(form.task) }}
-    {{ form_errors(form.task) }}
-    {{ form_widget(form.task) }}
+    {{ form_label(form.name) }}
+    {{ form_errors(form.name) }}
+    {{ form_widget(form.name) }}
 </div>
 <div>
-    {{ form_label(form.dueDate) }}
-    {{ form_errors(form.dueDate) }}
-    {{ form_widget(form.dueDate) }}
+    {{ form_label(form.startDate) }}
+    {{ form_errors(form.startDate) }}
+    {{ form_widget(form.startDate) }}
 </div>
 <div>
+    {{ form_widget(form.reset) }}
     {{ form_widget(form.save) }}
 </div>
 {{ form_end(form) }}
 
 <h3>Active tasks</h3>
 <ul>
-    <li>my task here...</li>
+    {% for t in tasks %}
+        <li>{{ t.getName() }} - {{ t.getStartDate|date('d/m/Y') }}</li>
+    {% endfor %}
 </ul>
