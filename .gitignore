@@ -1,5 +1,6 @@
 .idea
 .vagrant
+.DS_Store
 
 /app/bootstrap.php.cache
 /app/cache/*
