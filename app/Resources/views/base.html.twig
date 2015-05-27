@@ -17,6 +17,9 @@
                 <a class="navbar-brand" href="{{ path('listat_homepage') }}">Listat</a>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="{{ path('listat_homepage') }}">Home</a></li>
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <li><a href="#">{{ flashMessage }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

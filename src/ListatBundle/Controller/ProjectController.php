@@ -21,6 +21,11 @@ class ProjectController extends Controller
             $em->persist($project);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'The new project has been successfully created!'
+            );
+
             return $this->redirect($this->generateUrl('listat_homepage'));
         }
 
@@ -48,6 +53,11 @@ class ProjectController extends Controller
         $em->remove($project);
         $em->flush();
 
+        $this->get('session')->getFlashBag()->add(
+            'notice',
+            'The project has been deleted!'
+        );
+
         return $this->redirect($this->generateUrl('listat_homepage'));
     }
 
@@ -70,6 +80,11 @@ class ProjectController extends Controller
 
             $em->persist($project);
             $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'Your changes have been saved!'
+            );
 
             return $this->redirect($this->generateUrl('listat_homepage'));
         }
