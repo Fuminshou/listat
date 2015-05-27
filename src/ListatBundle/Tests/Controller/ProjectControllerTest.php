@@ -12,8 +12,8 @@ class ProjectControllerTest extends TestCase
         $crawler = $client->request('GET', '/');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-        $this->assertEquals(1, $crawler->filter('h1')->count());
-        $this->assertEquals(3, $crawler->filter('ul > li')->count());
+        $this->assertEquals(1, $crawler->filter('h3')->count());
+        $this->assertEquals(4, $crawler->filter('tr')->count());
         $this->assertEquals(1, $crawler->filter('form')->count());
         $this->assertEquals(1, $crawler->filter('input[type=text]')->count());
         $this->assertEquals(3, $crawler->filter('select')->count());
@@ -30,13 +30,13 @@ class ProjectControllerTest extends TestCase
         $crawler = $client->followRedirect();
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-        $this->assertEquals(4, $crawler->filter('ul > li')->count());
-        $this->assertContains('Summer Project', $crawler->filter('ul > li')->last()->text());
+        $this->assertEquals(5, $crawler->filter('tr')->count());
+        $this->assertContains('Summer Project', $crawler->filter('tr')->last()->text());
 
         $link = $crawler->filter('a:contains("Summer Project")')->link();
         $crawler = $client->click($link);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-        $this->assertContains('Summer Project', $crawler->filter('h1')->text());
+        $this->assertContains('Summer Project', $crawler->filter('h2')->text());
     }
 }

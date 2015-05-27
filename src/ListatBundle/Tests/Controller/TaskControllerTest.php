@@ -12,8 +12,9 @@ class TaskControllerTest extends TestCase
         $crawler = $client->request('GET', '/project/1');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-        $this->assertEquals(1, $crawler->filter('h1')->count());
-        $this->assertEquals(3, $crawler->filter('ul > li')->count());
+        $this->assertEquals(1, $crawler->filter('h2')->count());
+        $this->assertEquals(1, $crawler->filter('h3')->count());
+        $this->assertEquals(4, $crawler->filter('tr')->count());
         $this->assertEquals(1, $crawler->filter('form')->count());
         $this->assertEquals(1, $crawler->filter('input[type=text]')->count());
         $this->assertEquals(3, $crawler->filter('select')->count());
@@ -30,7 +31,7 @@ class TaskControllerTest extends TestCase
         $crawler = $client->followRedirect();
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-        $this->assertEquals(4, $crawler->filter('ul > li')->count());
-        $this->assertContains('Summer Task', $crawler->filter('ul > li')->last()->text());
+        $this->assertEquals(5, $crawler->filter('tr')->count());
+        $this->assertContains('Summer Task', $crawler->filter('tr')->last()->text());
     }
 }
