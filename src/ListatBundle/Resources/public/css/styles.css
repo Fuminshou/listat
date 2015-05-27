@@ -37,36 +37,3 @@ select {
 input[type='text'] {
     width: 350px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-AGOSTO 2015
-lun 10  bologna->bruxelles (regionale cesena->bologna + volo ryanair blq->bru charleroi)
-        bruxelles:  mar 11, mer 12, gio 13
-ven 14  bruxelles->berlino (volo easyjet bru charleroi->ber schoen...)
-        berlino:    sab 15, dom 16, lun 17, mar 18, mer 19, gio 20
-ven 21  berlino->venezia   (volor easyjet ber schoen->ven marco polo)
-sab 22  venezia->cesena    (freccia* venezia->bologna + *regionale* bologna->cesena)
-*/
