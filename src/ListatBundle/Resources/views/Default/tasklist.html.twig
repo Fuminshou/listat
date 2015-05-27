@@ -43,7 +43,10 @@
         </tr>
         {% for t in tasks %}
             <tr class="row">
-                <td class="col-md-1">X e</td>
+                <td class="col-md-1">
+                    <a href="{{ path('listat_delete_task', {'id': t.getId()}) }}">x</a>
+                    <a href="{{ path('listat_edit_task', {'id': t.getId()}) }}">e</a>
+                </td>
                 <td class="col-md-7">{{ t.getName() }}</td>
                 <td class="col-md-2">{{ t.getStartDate|date('d/m/Y') }}</td>
                 <td class="col-md-2"></td>

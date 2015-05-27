@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Edit task
+{% endblock %}
+
+{% block body %}
+    <h3>Edit task {{ task.getName() }}</h3>
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-5">
+            {{ form_label(form.name) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_label(form.startDate) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            {{ form_errors(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_errors(form.startDate) }}
+            {{ form_widget(form.startDate) }}
+        </div>
+        <div class="col-md-3 pull-right">
+            {{ form_widget(form.reset) }}
+            {{ form_widget(form.save) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

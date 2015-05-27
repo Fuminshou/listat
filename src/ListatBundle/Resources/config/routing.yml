@@ -13,3 +13,11 @@ listat_delete_project:
 listat_edit_project:
     path:   /project/edit/{id}
     defaults: { _controller: ListatBundle:Project:edit }
+
+listat_delete_task:
+    path:   /task/delete/{id}
+    defaults: { _controller: ListatBundle:Task:delete }
+
+listat_edit_task:
+    path:   /task/edit/{id}
+    defaults: { _controller: ListatBundle:Task:edit }
