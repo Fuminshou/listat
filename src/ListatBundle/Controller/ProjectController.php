@@ -33,4 +33,52 @@ class ProjectController extends Controller
             )
         );
     }
+
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('ListatBundle\\Entity\\Project')->find($id);
+
+        if (!$project) {
+            throw $this->createNotFoundException(
+                'There is no project with id '.$id
+            );
+        }
+
+        $em->remove($project);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('listat_homepage'));
+    }
+
+    public function editAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('ListatBundle\\Entity\\Project')->find($id);
+
+        if (!$project) {
+            throw $this->createNotFoundException(
+                'There is no project with id '.$id
+            );
+        }
+
+        $form = $this->createForm(new ProjectType(), $project);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $project = $form->getData();
+
+            $em->persist($project);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('listat_homepage'));
+        }
+
+        return $this->render('ListatBundle:Default:edit_project.html.twig',
+            array(
+                'project' => $project,
+                'form' => $form->createView()
+            )
+        );
+    }
 }

@@ -40,15 +40,27 @@
             <th class="col-md-2">Start date</th>
             <th class="col-md-2">Last Update</th>
         </tr>
-        {% for pj in projects %}
+        {% for p in projects %}
             <tr class="row">
-                <td class="col-md-1">X e</td>
-                <td class="col-md-7">
-                    <a href="{{ path('listat_tasklist', {'id': pj.getId()}) }}">
-                        {{ pj.getName() }}</a>
+                <td class="col-md-1">
+                    <a href="{{ path('listat_delete_project', {'id': p.getId()}) }}">x</a>
+                    <a href="{{ path('listat_edit_project', {'id': p.getId()}) }}">e</a>
                 </td>
-                <td class="col-md-2">{{ pj.getStartDate|date('d/m/Y') }}</td>
+                <td class="col-md-7">
+                    <a href="{{ path('listat_tasklist', {'id': p.getId()}) }}">
+                        {{ p.getName() }}</a>
+                </td>
+                <td class="col-md-2">{{ p.getStartDate|date('d/m/Y') }}</td>
                 <td class="col-md-2">[Serve Simo]<td>
+            </tr>
+        {% else %}
+            <tr class="row">
+                <td class="col-md-1"></td>
+                <td class="col-md-7">
+                    Currently there are no active projects
+                </td>
+                <td class="col-md-2"></td>
+                <td class="col-md-2"><td>
             </tr>
         {% endfor %}
         </tbody>

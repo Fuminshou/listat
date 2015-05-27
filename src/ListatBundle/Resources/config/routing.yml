@@ -5,3 +5,11 @@ listat_homepage:
 listat_tasklist:
     path:   /project/{id}
     defaults: { _controller: ListatBundle:Task:tasklist }
+
+listat_delete_project:
+    path:   /project/delete/{id}
+    defaults: { _controller: ListatBundle:Project:delete }
+
+listat_edit_project:
+    path:   /project/edit/{id}
+    defaults: { _controller: ListatBundle:Project:edit }
