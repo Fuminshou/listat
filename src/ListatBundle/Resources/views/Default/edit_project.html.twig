@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Listat
+{% endblock %}
+
+{% block body %}
+    <h3>New project</h3>
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-5">
+            {{ form_label(form.name) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_label(form.startDate) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            {{ form_errors(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_errors(form.startDate) }}
+            {{ form_widget(form.startDate) }}
+        </div>
+        <div class="col-md-3 pull-right">
+            {{ form_widget(form.reset) }}
+            {{ form_widget(form.save) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+    <table class="table table-responsive table-striped">
+        <caption>Open Projects</caption>
+        <tbody>
+        <tr class="row">
+            <th class="col-md-1">#</th>
+            <th class="col-md-7">Project</th>
+            <th class="col-md-2">Start date</th>
+            <th class="col-md-2">Last Update</th>
+        </tr>
+        {% for pj in projects %}
+            <tr class="row">
+                <td class="col-md-1">
+                    <a href="{{ path('listat_delete_project', {'id': pj.getId()}) }}">x</a>
+                    <a href="">e</a>
+                </td>
+                <td class="col-md-7">
+                    <a href="{{ path('listat_tasklist', {'id': pj.getId()}) }}">
+                        {{ pj.getName() }}</a>
+                </td>
+                <td class="col-md-2">{{ pj.getStartDate|date('d/m/Y') }}</td>
+                <td class="col-md-2">[Serve Simo]<td>
+            </tr>
+        {% else %}
+            <tr class="row">
+                <td class="col-md-12">
+                    Currently there are no active projects
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

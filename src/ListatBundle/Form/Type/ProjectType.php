@@ -11,9 +11,9 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', 'text');
-        $builder->add('startDate', 'date', array('data' => new \DateTime()));
+        $builder->add('startDate', 'date', array('placeholder' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')));
         $builder->add('reset', 'reset', array('label' => 'Reset'));
-        $builder->add('save', 'submit', array('label' => 'Create Project'));
+        $builder->add('save', 'submit', array('label' => 'Save Project'));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
