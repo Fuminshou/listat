@@ -3,11 +3,30 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link href="{{ asset("bundles/listat/css/bootstrap.min.css") }}" rel="stylesheet">
+            <!--[if lt IE 9]>
+            <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <![endif]-->
+            <link href="{{ asset("bundles/listat/css/styles.css") }}" rel="stylesheet">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <div class="navbar navbar-default">
+            <div class="container">
+                <a class="navbar-brand" href="{{ path('listat_homepage') }}">Listat</a>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{{ path('listat_homepage') }}">Home</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+        {% block javascripts %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+            <script src="{{ asset("bundles/listat/js/bootstrap.min.js") }}" ></script>
+        {% endblock %}
     </body>
 </html>

@@ -1,25 +1,54 @@
-<h1>{{ project.getName() }}</h1>
+{% extends 'base.html.twig' %}
 
-{{ form_start(form) }}
-<div>
-    {{ form_label(form.name) }}
-    {{ form_errors(form.name) }}
-    {{ form_widget(form.name) }}
-</div>
-<div>
-    {{ form_label(form.startDate) }}
-    {{ form_errors(form.startDate) }}
-    {{ form_widget(form.startDate) }}
-</div>
-<div>
-    {{ form_widget(form.reset) }}
-    {{ form_widget(form.save) }}
-</div>
-{{ form_end(form) }}
+{% block title %}
+    {{ project.getName() }}
+{% endblock %}
 
-<h3>Active tasks</h3>
-<ul>
-    {% for t in tasks %}
-        <li>{{ t.getName() }} - {{ t.getStartDate|date('d/m/Y') }}</li>
-    {% endfor %}
-</ul>
+{% block body %}
+    <h2>{{ project.getName() }}</h2>
+    <h3>New task</h3>
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-5">
+            {{ form_label(form.name) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_label(form.startDate) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            {{ form_errors(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_errors(form.startDate) }}
+            {{ form_widget(form.startDate) }}
+        </div>
+        <div class="col-md-3 pull-right">
+            {{ form_widget(form.reset) }}
+            {{ form_widget(form.save) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+    <table class="table table-responsive table-striped">
+        <caption>Active tasks</caption>
+        <tbody>
+        <tr class="row">
+            <th class="col-md-1">#</th>
+            <th class="col-md-7">Task</th>
+            <th class="col-md-2">Start date</th>
+            <th class="col-md-2">Last Update</th>
+        </tr>
+        {% for t in tasks %}
+            <tr class="row">
+                <td class="col-md-1">X e</td>
+                <td class="col-md-7">{{ t.getName() }}</td>
+                <td class="col-md-2">{{ t.getStartDate|date('d/m/Y') }}</td>
+                <td class="col-md-2"></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
