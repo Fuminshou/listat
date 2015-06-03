@@ -2,6 +2,7 @@
 
 namespace ListatBundle\Controller;
 
+use ListatBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use ListatBundle\Form\Type\ProjectType;
@@ -78,6 +79,7 @@ class ProjectController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $project = $form->getData();
 
+
             $em->persist($project);
             $em->flush();
 
@@ -93,6 +95,18 @@ class ProjectController extends Controller
             array(
                 'project' => $project,
                 'form' => $form->createView()
+            )
+        );
+    }
+
+    public function lastUpdateAction(Project $project)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $lastUpdate = $em->getRepository('ListatBundle\\Entity\\Project')->findLastUpdateByProject($project);
+
+        return $this->render('ListatBundle::parts/last_update.html.twig',
+            array(
+                'lastUpdate' => $lastUpdate,
             )
         );
     }

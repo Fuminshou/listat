@@ -4,11 +4,10 @@ namespace ListatBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
  * @ORM\Table(name="project")
+ * @ORM\Entity(repositoryClass="ListatBundle\Entity\ProjectRepository")
  */
 class Project
 {

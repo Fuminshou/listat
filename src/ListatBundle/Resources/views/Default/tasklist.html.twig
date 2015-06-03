@@ -39,17 +39,19 @@
             <th class="col-md-1">#</th>
             <th class="col-md-7">Task</th>
             <th class="col-md-2">Start date</th>
-            <th class="col-md-2">Last Update</th>
+            <th class="col-md-2">Last update</th>
         </tr>
         {% for t in tasks %}
             <tr class="row">
                 <td class="col-md-1">
-                    <a href="{{ path('listat_delete_task', {'id': t.getId()}) }}">x</a>
-                    <a href="{{ path('listat_edit_task', {'id': t.getId()}) }}">e</a>
+                    <a href="{{ path('listat_delete_task', {'id': t.getId()}) }}" class="inline-btn">
+                        <i class="fa fa-minus-square-o fa-lg"></i></a>
+                    <a href="{{ path('listat_edit_task', {'id': t.getId()}) }}" class="inline-btn">
+                        <i class="fa fa-pencil-square-o fa-lg"></i></a>
                 </td>
                 <td class="col-md-7">{{ t.getName() }}</td>
                 <td class="col-md-2">{{ t.getStartDate|date('d/m/Y') }}</td>
-                <td class="col-md-2"></td>
+                <td class="col-md-2">{{ t.getLastUpdate|date('d/m/Y') }}</td>
             </tr>
         {% endfor %}
         </tbody>

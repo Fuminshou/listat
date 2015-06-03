@@ -28,6 +28,12 @@ class Task
      */
     protected $startDate;
 
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $lastUpdate;
+
     /**
      * @var Project
      *
@@ -92,6 +98,34 @@ class Task
     public function getStartDate()
     {
         return $this->startDate;
+    }
+
+    /**
+     * Set lastUpdate
+     *
+     * @param \DateTime $lastUpdate
+     * @return Task
+     */
+    public function setLastUpdate($lastUpdate = null)
+    {
+        if(is_null($lastUpdate))
+        {
+            $lastUpdate = $this->getStartDate();
+        }
+
+        $this->lastUpdate = $lastUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get startDate
+     *
+     * @return \DateTime
+     */
+    public function getLastUpdate()
+    {
+        return $this->lastUpdate;
     }
 
     /**

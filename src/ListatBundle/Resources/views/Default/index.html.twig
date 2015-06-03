@@ -38,20 +38,22 @@
             <th class="col-md-1">#</th>
             <th class="col-md-7">Project</th>
             <th class="col-md-2">Start date</th>
-            <th class="col-md-2">Last Update</th>
+            <th class="col-md-2">Last update</th>
         </tr>
         {% for p in projects %}
             <tr class="row">
                 <td class="col-md-1">
-                    <a href="{{ path('listat_delete_project', {'id': p.getId()}) }}">x</a>
-                    <a href="{{ path('listat_edit_project', {'id': p.getId()}) }}">e</a>
+                    <a href="{{ path('listat_delete_project', {'id': p.getId()}) }}" class="inline-btn">
+                        <i class="fa fa-minus-square-o fa-lg"></i></a>
+                    <a href="{{ path('listat_edit_project', {'id': p.getId()}) }}" class="inline-btn">
+                        <i class="fa fa-pencil-square-o fa-lg"></i></a>
                 </td>
                 <td class="col-md-7">
                     <a href="{{ path('listat_tasklist', {'id': p.getId()}) }}">
                         {{ p.getName() }}</a>
                 </td>
                 <td class="col-md-2">{{ p.getStartDate|date('d/m/Y') }}</td>
-                <td class="col-md-2">[Serve Simo]<td>
+                <td class="col-md-2">{{ render(controller('ListatBundle:Project:lastUpdate', {'project' : p} )) }}<td>
             </tr>
         {% else %}
             <tr class="row">

@@ -44,6 +44,7 @@ class TestCase extends WebTestCase
             $t = new Task();
             $t->setName("Task ".$j);
             $t->setStartDate(new \DateTime($j.'-'.$j.'-2015'));
+            $t->setLastUpdate(new \DateTime(($j*2) .'-'. ($j*2) .'-2015'));
             $t->setProject($projects[0]);
 
             $this->em->persist($t);

@@ -37,3 +37,13 @@ select {
 input[type='text'] {
     width: 350px;
 }
+
+a.inline-btn:link, a.inline-btn:visited{
+    color: #444444;
+    margin-right: 7px;
+}
+
+a.inline-btn:hover, a.inline-btn:active {
+    color: #dd4444;
+    margin-right: 7px;
+}

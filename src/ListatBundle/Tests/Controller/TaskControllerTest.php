@@ -21,7 +21,7 @@ class TaskControllerTest extends TestCase
         $this->assertEquals(2, $crawler->filter('button')->count());
         $this->assertEquals(2, $crawler->filter('tr:nth-child(2) > td.col-md-1:first-child > a')->count());
 
-        $link = $crawler->filter('tr:nth-child(2) > td.col-md-1:first-child > a')->first()->link();
+        $link = $crawler->filter('tr:nth-child(4) > td.col-md-1:first-child > a')->first()->link();
         $crawler = $client->click($link);
         $crawler = $client->followRedirect();
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
@@ -29,9 +29,9 @@ class TaskControllerTest extends TestCase
 
         $form = $crawler->selectButton('Save Task')->form();
 
-        $form['task[name]'] = 'Task 4';
-        $form['task[startDate]']['day']->select(20);
-        $form['task[startDate]']['month']->select(5);
+        $form['task[name]'] = 'Summer Task';
+        $form['task[startDate]']['day']->select(21);
+        $form['task[startDate]']['month']->select(6);
         $form['task[startDate]']['year']->select(2015);
 
         $crawler = $client->submit($form);
@@ -39,9 +39,9 @@ class TaskControllerTest extends TestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
         $this->assertEquals(4, $crawler->filter('tr')->count());
-        $this->assertContains('Task 4', $crawler->filter('tr')->last()->text());
+        $this->assertContains('Summer Task', $crawler->filter('tr')->last()->text());
 
-        $link = $crawler->filter('tr:nth-child(2) > td.col-md-1:first-child > a')->last()->link();
+        $link = $crawler->filter('tr:nth-child(4) > td.col-md-1:first-child > a')->last()->link();
         $crawler = $client->click($link);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
@@ -53,9 +53,9 @@ class TaskControllerTest extends TestCase
 
         $form = $crawler->selectButton('Save Task')->form();
 
-        $form['task[name]'] = 'Summer Task';
-        $form['task[startDate]']['day']->select(21);
-        $form['task[startDate]']['month']->select(6);
+        $form['task[name]'] = 'Task 3';
+        $form['task[startDate]']['day']->select(5);
+        $form['task[startDate]']['month']->select(5);
         $form['task[startDate]']['year']->select(2015);
 
         $crawler = $client->submit($form);

@@ -5,7 +5,6 @@ namespace ListatBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use ListatBundle\Form\Type\TaskType;
-use ListatBundle\Entity\Project;
 
 class TaskController extends Controller
 {
@@ -14,13 +13,20 @@ class TaskController extends Controller
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(new TaskType());
 
-        $project = $em->getRepository('ListatBundle\\Entity\\Project')->find($id);    //mettere try-catch per eccezione not found
+        $project = $em->getRepository('ListatBundle\\Entity\\Project')->find($id);
+
+        if (!$project) {
+            throw $this->createNotFoundException(
+                'There is no project with id '.$id
+            );
+        }
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $task = $form->getData();
             $task->setProject($project);
+            $task->setLastUpdate();
 
             $em->persist($task);
             $em->flush();
@@ -81,6 +87,7 @@ class TaskController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $task = $form->getData();
+            $task->setLastUpdate();
 
             $em->persist($task);
             $em->flush();
