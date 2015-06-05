@@ -1,10 +1,10 @@
 listat_homepage:
     path:     /
-    defaults: { _controller: ListatBundle:Project:index }
+    defaults: { _controller: ListatBundle:User:user }
 
-listat_tasklist:
-    path:   /project/{id}
-    defaults: { _controller: ListatBundle:Task:tasklist }
+listat_project_list:
+    path:     /project/{id}
+    defaults: { _controller: ListatBundle:Project:projectList }
 
 listat_delete_project:
     path:   /project/delete/{id}
@@ -13,6 +13,10 @@ listat_delete_project:
 listat_edit_project:
     path:   /project/edit/{id}
     defaults: { _controller: ListatBundle:Project:edit }
+
+listat_task_list:
+    path:   /task/{id}
+    defaults: { _controller: ListatBundle:Task:taskList }
 
 listat_delete_task:
     path:   /task/delete/{id}

@@ -8,7 +8,7 @@ use ListatBundle\Form\Type\TaskType;
 
 class TaskController extends Controller
 {
-    public function tasklistAction(Request $request, $id)
+    public function taskListAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(new TaskType());
@@ -31,14 +31,14 @@ class TaskController extends Controller
             $em->persist($task);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('listat_tasklist', array('id' => $id)));
+            return $this->redirect($this->generateUrl('listat_task_list', array('id' => $id)));
         }
 
         $tasks = $em->getRepository('ListatBundle\\Entity\\Task')->findBy(array(
             'project' => $project
         ));
 
-        return $this->render('ListatBundle:Default:tasklist.html.twig',
+        return $this->render('ListatBundle:Default:task.html.twig',
             array(
                 'project' => $project,
                 'form' => $form->createView(),
@@ -68,7 +68,7 @@ class TaskController extends Controller
 
         $project = $task->getProject();
 
-        return $this->redirect($this->generateUrl('listat_tasklist', array('id' => $project->getId())));
+        return $this->redirect($this->generateUrl('listat_task_list', array('id' => $project->getId())));
     }
 
     public function editAction(Request $request, $id)
@@ -99,7 +99,7 @@ class TaskController extends Controller
 
             $project = $task->getProject();
 
-            return $this->redirect($this->generateUrl('listat_tasklist', array('id' => $project->getId())));
+            return $this->redirect($this->generateUrl('listat_task_list', array('id' => $project->getId())));
         }
 
         return $this->render('ListatBundle:Default:edit_task.html.twig',

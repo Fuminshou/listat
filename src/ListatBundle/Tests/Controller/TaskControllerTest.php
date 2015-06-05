@@ -6,10 +6,10 @@ use ListatBundle\Tests\TestCase;
 
 class TaskControllerTest extends TestCase
 {
-    public function testTasklist()
+    public function testTaskList()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/project/1');
+        $crawler = $client->request('GET', '/task/1');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
         $this->assertEquals(1, $crawler->filter('h2')->count());
@@ -32,7 +32,7 @@ class TaskControllerTest extends TestCase
         $form['task[name]'] = 'Summer Task';
         $form['task[startDate]']['day']->select(21);
         $form['task[startDate]']['month']->select(6);
-        $form['task[startDate]']['year']->select(2015);
+        $form['task[startDate]']['year']->select(2014);
 
         $crawler = $client->submit($form);
         $crawler = $client->followRedirect();
@@ -56,7 +56,7 @@ class TaskControllerTest extends TestCase
         $form['task[name]'] = 'Task 3';
         $form['task[startDate]']['day']->select(5);
         $form['task[startDate]']['month']->select(5);
-        $form['task[startDate]']['year']->select(2015);
+        $form['task[startDate]']['year']->select(2014);
 
         $crawler = $client->submit($form);
         $crawler = $client->followRedirect();

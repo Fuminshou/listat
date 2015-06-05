@@ -9,15 +9,24 @@ use ListatBundle\Form\Type\ProjectType;
 
 class ProjectController extends Controller
 {
-    public function indexAction(Request $request)
+    public function projectListAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(new ProjectType());
+
+        $user = $em->getRepository('ListatBundle\\Entity\\User')->find($id);
+
+        if (!$user) {
+            throw $this->createNotFoundException(
+                'There is no user with id '.$id
+            );
+        }
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $project = $form->getData();
+            $project->setUser($user);
 
             $em->persist($project);
             $em->flush();
@@ -27,13 +36,16 @@ class ProjectController extends Controller
                 'The new project has been successfully created!'
             );
 
-            return $this->redirect($this->generateUrl('listat_homepage'));
+            return $this->redirect($this->generateUrl('listat_project_list', array('id' => $id)));
         }
 
-        $projects = $em->getRepository('ListatBundle\\Entity\\Project')->findAll();
+        $projects = $em->getRepository('ListatBundle\\Entity\\Project')->findBy(array(
+            'user' => $user
+        ));
 
-        return $this->render('ListatBundle:Default:index.html.twig',
+        return $this->render('ListatBundle:Default:project.html.twig',
             array(
+                'user' => $user,
                 'projects' => $projects,
                 'form' => $form->createView()
             )
@@ -59,7 +71,9 @@ class ProjectController extends Controller
             'The project has been deleted!'
         );
 
-        return $this->redirect($this->generateUrl('listat_homepage'));
+        $user = $project->getUser();
+
+        return $this->redirect($this->generateUrl('listat_project_list', array('id' => $user->getId())));
     }
 
     public function editAction(Request $request, $id)
@@ -88,7 +102,9 @@ class ProjectController extends Controller
                 'Your changes have been saved!'
             );
 
-            return $this->redirect($this->generateUrl('listat_homepage'));
+            $user = $project->getUser();
+
+            return $this->redirect($this->generateUrl('listat_project_list', array('id' => $user->getId())));
         }
 
         return $this->render('ListatBundle:Default:edit_project.html.twig',

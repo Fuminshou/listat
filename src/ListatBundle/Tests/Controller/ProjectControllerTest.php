@@ -6,10 +6,10 @@ use ListatBundle\Tests\TestCase;
 
 class ProjectControllerTest extends TestCase
 {
-    public function testIndex()
+    public function testProjectList()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', '/project/1');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
         $this->assertEquals(1, $crawler->filter('h3')->count());
@@ -31,7 +31,7 @@ class ProjectControllerTest extends TestCase
         $form['project[name]'] = 'Project 4';
         $form['project[startDate]']['day']->select(20);
         $form['project[startDate]']['month']->select(5);
-        $form['project[startDate]']['year']->select(2015);
+        $form['project[startDate]']['year']->select(2014);
 
         $crawler = $client->submit($form);
         $crawler = $client->followRedirect();
@@ -55,13 +55,13 @@ class ProjectControllerTest extends TestCase
         $form['project[name]'] = 'Summer Project';
         $form['project[startDate]']['day']->select(21);
         $form['project[startDate]']['month']->select(6);
-        $form['project[startDate]']['year']->select(2015);
+        $form['project[startDate]']['year']->select(2014);
 
         $crawler = $client->submit($form);
         $crawler = $client->followRedirect();
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-        $link = $crawler->filter('a:contains("Summer Project")')->link();
+        $link = $crawler->filter('a:contains("Project")')->first()->link();
         $crawler = $client->click($link);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
