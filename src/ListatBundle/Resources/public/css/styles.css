@@ -38,12 +38,26 @@ input[type='text'] {
     width: 350px;
 }
 
-a.inline-btn:link, a.inline-btn:visited{
+a.inline-btn:link, a.inline-btn:visited {
     color: #444444;
-    margin-right: 7px;
 }
 
 a.inline-btn:hover, a.inline-btn:active {
     color: #dd4444;
+}
+
+.left {
+    width: 50%;
+    float: left;
+    padding-right: 15px;
+}
+
+.right {
+    width: 50%;
+    float: right;
+    padding-left: 15px;
+}
+
+.inline-icon {
     margin-right: 7px;
 }

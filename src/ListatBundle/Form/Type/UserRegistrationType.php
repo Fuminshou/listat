@@ -6,24 +6,29 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface; //use OptionResolver
 
-class TaskType extends AbstractType
+class UserRegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'text');
-        $builder->add('startDate', 'date', array('placeholder' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')));
-        $builder->add('save', 'submit', array('label' => 'Save Task'));
+        $builder->add('email', 'email');
+        $builder->add('username', 'text');
+        $builder->add('password', 'repeated', array(
+            'first_name'  => 'password',
+            'second_name' => 'confirm',
+            'type'        => 'password',
+        ));
+        $builder->add('save', 'submit', array('label' => 'Register'));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ListatBundle\Entity\Task'
+            'data_class' => 'ListatBundle\Entity\User'
         ));
     }
 
     public function getName()
     {
-        return 'task';
+        return 'userRegistration';
     }
 }

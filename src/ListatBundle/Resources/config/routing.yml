@@ -1,6 +1,14 @@
 listat_homepage:
     path:     /
-    defaults: { _controller: ListatBundle:User:user }
+    defaults: { _controller: ListatBundle:User:index }
+
+listat_register:
+    path:     /register
+    defaults: { _controller: ListatBundle:User:register }
+
+listat_login:
+    path:     /login
+    defaults: { _controller: ListatBundle:User:login }
 
 listat_project_list:
     path:     /project/{id}

@@ -5,6 +5,12 @@
 {% endblock %}
 
 {% block body %}
-    <h3>Ciao!</h3>
-    <a href="{{ path('listat_project_list', {'id': 1}) }}">Vai alla lista dei progetti</a>
+    <h3>Welcome to Listat</h3>
+    <p class="col-md-6">
+        <b>Listat</b> is a simple to do list with minimal design. It's really user friendly so give it a try ;)
+    </p>
+    <a href="{{ path('listat_register') }}" class="col-md-2 text-right">
+        <i class="fa fa-check-square-o fa-lg inline-icon"></i>Register</a>
+    <a href="{{ path('listat_login') }}" class="col-md-4">
+        <i class="fa fa-sign-in fa-lg inline-icon"></i>Login</a>
 {% endblock %}

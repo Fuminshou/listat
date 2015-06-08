@@ -18,7 +18,7 @@ class TaskControllerTest extends TestCase
         $this->assertEquals(1, $crawler->filter('form')->count());
         $this->assertEquals(1, $crawler->filter('input[type=text]')->count());
         $this->assertEquals(3, $crawler->filter('select')->count());
-        $this->assertEquals(2, $crawler->filter('button')->count());
+        $this->assertEquals(1, $crawler->filter('button')->count());
         $this->assertEquals(2, $crawler->filter('tr:nth-child(2) > td.col-md-1:first-child > a')->count());
 
         $link = $crawler->filter('tr:nth-child(4) > td.col-md-1:first-child > a')->first()->link();
@@ -49,7 +49,7 @@ class TaskControllerTest extends TestCase
         $this->assertEquals(1, $crawler->filter('form')->count());
         $this->assertEquals(1, $crawler->filter('input[type=text]')->count());
         $this->assertEquals(3, $crawler->filter('select')->count());
-        $this->assertEquals(2, $crawler->filter('button')->count());
+        $this->assertEquals(1, $crawler->filter('button')->count());
 
         $form = $crawler->selectButton('Save Task')->form();
 

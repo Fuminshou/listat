@@ -12,7 +12,6 @@ class ProjectType extends AbstractType
     {
         $builder->add('name', 'text');
         $builder->add('startDate', 'date', array('placeholder' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')));
-        $builder->add('reset', 'reset', array('label' => 'Reset'));
         $builder->add('save', 'submit', array('label' => 'Save Project'));
     }
 

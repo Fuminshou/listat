@@ -31,7 +31,18 @@ class TaskController extends Controller
             $em->persist($task);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'The task has been created!'
+            );
+
             return $this->redirect($this->generateUrl('listat_task_list', array('id' => $id)));
+        }
+        else {
+            $this->get('session')->getFlashBag()->add(
+                'notice',
+                'The task cannot be created, please retry'
+            );
         }
 
         $tasks = $em->getRepository('ListatBundle\\Entity\\Task')->findBy(array(
@@ -54,7 +65,7 @@ class TaskController extends Controller
 
         if (!$task) {
             throw $this->createNotFoundException(
-                'There is no project with id '.$id
+                'There is no task with id '.$id
             );
         }
 
@@ -63,7 +74,7 @@ class TaskController extends Controller
 
         $this->get('session')->getFlashBag()->add(
             'notice',
-            'The project has been deleted!'
+            'The task has been deleted!'
         );
 
         $project = $task->getProject();

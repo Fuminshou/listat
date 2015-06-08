@@ -19,17 +19,21 @@ class User
     protected $id;
 
     /**
-     * @ORM\Column(name="username", type="string", length=15)
+     * @ORM\Column(name="username", type="string", length=16)
      */
     protected $username;
 
     /**
      * @ORM\Column(name="email", type="string", length=100)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     protected $email;
 
     /**
      * @ORM\Column(name="password", type="string", length=16)
+     * @Assert\NotBlank()
+     * @Assert\Length(max = 4096)
      */
     protected $password;
 

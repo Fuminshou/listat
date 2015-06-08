@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Listat
+    {{ user.getUsername() }}'s projects
 {% endblock %}
 
 {% block body %}
+    <h2>Is nice to see you {{ user.getUsername() }}</h2>
     <h3>New project</h3>
     {{ form_start(form) }}
     <div class="row">
@@ -26,7 +27,6 @@
             {{ form_widget(form.startDate) }}
         </div>
         <div class="col-md-3 pull-right">
-            {{ form_widget(form.reset) }}
             {{ form_widget(form.save) }}
         </div>
     </div>
@@ -44,9 +44,9 @@
             <tr class="row">
                 <td class="col-md-1">
                     <a href="{{ path('listat_delete_project', {'id': p.getId()}) }}" class="inline-btn">
-                        <i class="fa fa-minus-square-o fa-lg"></i></a>
+                        <i class="fa fa-minus-square-o fa-lg inline-icon"></i></a>
                     <a href="{{ path('listat_edit_project', {'id': p.getId()}) }}" class="inline-btn">
-                        <i class="fa fa-pencil-square-o fa-lg"></i></a>
+                        <i class="fa fa-pencil-square-o fa-lg inline-icon"></i></a>
                 </td>
                 <td class="col-md-7">
                     <a href="{{ path('listat_task_list', {'id': p.getId()}) }}">

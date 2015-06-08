@@ -12,12 +12,13 @@ class ProjectControllerTest extends TestCase
         $crawler = $client->request('GET', '/project/1');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
+        $this->assertEquals(1, $crawler->filter('h2')->count());
         $this->assertEquals(1, $crawler->filter('h3')->count());
         $this->assertEquals(4, $crawler->filter('tr')->count());
         $this->assertEquals(1, $crawler->filter('form')->count());
         $this->assertEquals(1, $crawler->filter('input[type=text]')->count());
         $this->assertEquals(3, $crawler->filter('select')->count());
-        $this->assertEquals(2, $crawler->filter('button')->count());
+        $this->assertEquals(1, $crawler->filter('button')->count());
         $this->assertEquals(2, $crawler->filter('tr:nth-child(2) > td.col-md-1:first-child > a')->count());
 
         $link = $crawler->filter('tr:nth-child(2) > td.col-md-1:first-child > a')->first()->link();
@@ -48,7 +49,7 @@ class ProjectControllerTest extends TestCase
         $this->assertEquals(1, $crawler->filter('form')->count());
         $this->assertEquals(1, $crawler->filter('input[type=text]')->count());
         $this->assertEquals(3, $crawler->filter('select')->count());
-        $this->assertEquals(2, $crawler->filter('button')->count());
+        $this->assertEquals(1, $crawler->filter('button')->count());
 
         $form = $crawler->selectButton('Save Project')->form();
 

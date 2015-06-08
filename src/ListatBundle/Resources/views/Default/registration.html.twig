@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Register to Listat
+{% endblock %}
+
+{% block body %}
+    <h3>Register to Listat</h3>
+    {{ form_start(form) }}
+    <p>
+        {{ form_label(form.email) }} {{ form_errors(form.email) }} {{ form_widget(form.email) }}
+    </p>
+    <p>
+        {{ form_label(form.username) }} {{ form_errors(form.username) }} {{ form_widget(form.username) }}
+    </p>
+    <p>
+        {{ form_errors(form.password) }} {{ form_widget(form.password) }}
+    </p>
+    <p>
+        {{ form_widget(form.save) }}
+    </p>
+    {{ form_end(form) }}
+{% endblock %}
